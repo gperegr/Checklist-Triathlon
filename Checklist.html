@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SANTOS TRI | Race Day Checklist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        volt: '#ccff00', // Neon green/yellow typical of sports brands
+                        dark: '#0a0a0a',
+                    },
+                    fontFamily: {
+                        'display': ['"Bebas Neue"', 'sans-serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar for a raw look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; }
+        ::-webkit-scrollbar-thumb:hover { background: #ccff00; }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Marquee Animation */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            background: #ccff00;
+            color: #000;
+            padding: 0.5rem 0;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Custom Checkbox Styling */
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: transparent;
+            margin: 0;
+            width: 32px;
+            height: 32px;
+            border: 3px solid #fff;
+            display: grid;
+            place-content: center;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        input[type="checkbox"]::before {
+            content: "";
+            width: 16px;
+            height: 16px;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            background-color: #000;
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: #ccff00;
+            border-color: #ccff00;
+        }
+
+        input[type="checkbox"]:checked::before {
+            transform: scale(1);
+        }
+
+        /* Strikethrough effect on checked items */
+        .check-item {
+            transition: all 0.3s ease;
+        }
+        input[type="checkbox"]:checked + span {
+            text-decoration: line-through;
+            color: #6b7280; /* text-gray-500 */
+        }
+        input[type="checkbox"]:checked ~ .icon {
+            opacity: 0.3;
+        }
+
+        /* Sticky Header Shadows */
+        .sticky-header {
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased pb-20">
+
+    <!-- Marquee Banner -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            SANTOS TRIATHLON • CHECKLIST OFICIAL • SANTOS TRIATHLON • CHECKLIST OFICIAL • SANTOS TRIATHLON • CHECKLIST OFICIAL • SANTOS TRIATHLON • CHECKLIST OFICIAL •
+        </div>
+    </div>
+
+    <!-- Header & Progress -->
+    <header class="sticky top-0 z-50 bg-dark sticky-header pt-6 pb-4 px-4 sm:px-8">
+        <div class="max-w-3xl mx-auto flex justify-between items-end mb-4">
+            <div>
+                <h2 class="text-volt font-bold tracking-widest text-xs sm:text-sm uppercase mb-1">Checklist Oficial</h2>
+                <h1 class="font-display text-5xl sm:text-7xl leading-none tracking-normal">SANTOS TRI</h1>
+            </div>
+            <div class="text-right">
+                <span id="progress-text" class="font-display text-4xl sm:text-5xl text-volt">0%</span>
+            </div>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="max-w-3xl mx-auto h-2 bg-gray-800 rounded-full overflow-hidden">
+            <div id="progress-bar" class="h-full bg-volt transition-all duration-500 ease-out" style="width: 0%;"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-4 sm:px-8 mt-8">
+        
+        <p class="text-gray-400 mb-10 text-lg sm:text-xl font-medium leading-relaxed">
+            Marque os itens conforme for colocando na mala. Seu progresso é salvo automaticamente.
+        </p>
+
+        <!-- CATEGORY: Documentos -->
+        <section class="mb-12">
+            <div class="border-b-4 border-white mb-4 pb-2 flex items-center justify-between">
+                <h2 class="font-display text-4xl tracking-wide uppercase">Documentos & Kit</h2>
+                <span class="text-3xl text-volt"><i class="fa-solid fa-id-card-clip"></i></span>
+            </div>
+            <div class="flex flex-col">
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="doc-1">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Documento de identidade original (RG/CNH)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="doc-2">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Comprovante de inscrição</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="doc-3">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Termo de responsabilidade assinado</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="doc-4">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-volt">Chip de cronometragem (colocar no tornozelo)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="doc-5">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-volt">Número de peito e tatuagens</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="doc-6">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-volt">Touca oficial da prova</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- CATEGORY: Natação -->
+        <section class="mb-12">
+            <div class="border-b-4 border-volt mb-4 pb-2 flex items-center justify-between">
+                <h2 class="font-display text-4xl tracking-wide uppercase">Swim <span class="text-volt">/ Natação</span></h2>
+                <span class="text-3xl icon text-volt"><i class="fa-solid fa-person-swimming"></i></span>
+            </div>
+            <div class="flex flex-col">
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="swim-1">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Macaquinho de triathlon / Trisuit</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="swim-2">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Roupa de borracha (Wetsuit) - Prevenção</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="swim-3">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Óculos de natação (1 claro + 1 escuro)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="swim-4">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Anti-embaçante para os óculos</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="swim-5">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Vaselina ou Body Glide</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- CATEGORY: Ciclismo -->
+        <section class="mb-12">
+            <div class="border-b-4 border-white mb-4 pb-2 flex items-center justify-between">
+                <h2 class="font-display text-4xl tracking-wide uppercase">Bike <span class="text-gray-500">/ Ciclismo</span></h2>
+                <span class="text-3xl icon text-volt"><i class="fa-solid fa-person-biking"></i></span>
+            </div>
+            <div class="flex flex-col">
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="bike-1">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Bicicleta (Revisada e com pneus calibrados)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="bike-2">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-red-500">Capacete (Uso obrigatório)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="bike-3">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Sapatilha de ciclismo</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="bike-4">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Óculos de sol esportivos</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="bike-5">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Caramanholas (Garrafas de água)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="bike-6">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Kit de reparo (Câmara, espátulas, CO2/Bomba)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="bike-7">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Elásticos para sapatilha (Opcional)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="bike-8">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Bomba de pé/chão</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="bike-9">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Lubrificante de corrente</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- CATEGORY: Corrida -->
+        <section class="mb-12">
+            <div class="border-b-4 border-volt mb-4 pb-2 flex items-center justify-between">
+                <h2 class="font-display text-4xl tracking-wide uppercase">Run <span class="text-volt">/ Corrida</span></h2>
+                <span class="text-3xl icon text-volt"><i class="fa-solid fa-person-running"></i></span>
+            </div>
+            <div class="flex flex-col">
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="run-1">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Tênis de corrida (Amaciado)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="run-2">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Cadarços elásticos</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="run-3">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Viseira ou boné</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="run-4">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Cinto porta-número (Number belt)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="run-5">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Meias de corrida</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- CATEGORY: Transição & Nutrição -->
+        <section class="mb-12">
+            <div class="border-b-4 border-white mb-4 pb-2 flex items-center justify-between">
+                <h2 class="font-display text-4xl tracking-wide uppercase">Setup <span class="text-gray-500">/ Geral & Nutrição</span></h2>
+                <span class="text-3xl icon text-volt"><i class="fa-solid fa-bolt"></i></span>
+            </div>
+            <div class="flex flex-col">
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="setup-1">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Relógio GPS (Garmin, Apple Watch, etc)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="setup-2">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Mochila de transição</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="setup-3">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Protetor solar (Resistente à água)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="setup-4">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Toalha pequena (Para T1)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="setup-5">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-volt">Géis de carboidrato / Gomas</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="setup-6">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-volt">Cápsulas de sal</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="setup-7">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-volt">Bebida isotônica</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="setup-8">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-volt">Suco de uva</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="setup-9">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-volt">Pão de forma</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="setup-10">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-volt">Doce de leite</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="setup-11">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Garrafa de água extra (Para lavar os pés na T1)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="setup-12">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Fita Isolante / Silver Tape</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="setup-13">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-volt">Nutrição Pós-prova (Whey, Recovery)</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- CATEGORY: Eletrônicos -->
+        <section class="mb-12">
+            <div class="border-b-4 border-volt mb-4 pb-2 flex items-center justify-between">
+                <h2 class="font-display text-4xl tracking-wide uppercase">Eletrônicos <span class="text-volt">/ Tech</span></h2>
+                <span class="text-3xl icon text-volt"><i class="fa-solid fa-plug"></i></span>
+            </div>
+            <div class="flex flex-col">
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="tech-1">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Carregador iPhone</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="tech-2">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Cabo iPhone</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="tech-3">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Carregador Garmin</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="tech-4">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Luz de Sinalização</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="tech-5">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Powerbank</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="tech-6">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Shimano Di2 (Carregador/Bateria)</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- CATEGORY: Casual -->
+        <section class="mb-12">
+            <div class="border-b-4 border-white mb-4 pb-2 flex items-center justify-between">
+                <h2 class="font-display text-4xl tracking-wide uppercase">Casual <span class="text-gray-500">/ 3 Dias</span></h2>
+                <span class="text-3xl icon text-volt"><i class="fa-solid fa-shirt"></i></span>
+            </div>
+            <div class="flex flex-col">
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="casual-1">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Camisetas (3 a 4 unidades)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="casual-2">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Bermudas / Calças (2 a 3 unidades)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="casual-3">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Roupas íntimas e meias (4+ pares)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="casual-4">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Tênis casual e Chinelo (Pós-prova)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="casual-5">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Agasalho leve / Moletom</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="casual-6">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Sacos plásticos / Dry Bag (Para roupa molhada)</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- CATEGORY: Higiene & Saúde -->
+        <section class="mb-12">
+            <div class="border-b-4 border-volt mb-4 pb-2 flex items-center justify-between">
+                <h2 class="font-display text-4xl tracking-wide uppercase">Higiene & Saúde <span class="text-volt">/ Cuidados</span></h2>
+                <span class="text-3xl icon text-volt"><i class="fa-solid fa-notes-medical"></i></span>
+            </div>
+            <div class="flex flex-col">
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="health-1">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Escova, pasta de dente e fio dental</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="health-2">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Desodorante e Perfume</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="health-3">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Shampoo e Sabonete</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="health-4">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-red-500">Imosec (Antidiarreico)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="health-5">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-red-500">Dorflex / Relaxante muscular</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="health-6">
+                    <span class="text-lg font-semibold uppercase tracking-tight text-red-500">Analgésico e Curativos (Band-aid)</span>
+                </label>
+                <label class="check-item flex items-center gap-4 py-4 border-b border-gray-800 cursor-pointer hover:bg-gray-900 px-2 transition-colors">
+                    <input type="checkbox" class="task-checkbox" data-id="health-7">
+                    <span class="text-lg font-semibold uppercase tracking-tight">Cortador de unhas</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- Footer Options -->
+        <div class="text-center mt-16 mb-8 border-t border-gray-800 pt-8">
+            <button id="reset-btn" class="mt-4 px-6 py-3 bg-transparent border-2 border-gray-600 text-gray-400 font-bold uppercase tracking-widest hover:border-red-500 hover:text-red-500 transition-colors text-sm">
+                Limpar Checklist
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Modal de Confirmação Personalizado -->
+    <div id="confirm-modal" class="hidden fixed inset-0 bg-black/90 z-[100] flex items-center justify-center backdrop-blur-sm px-4">
+        <div class="bg-gray-900 border-2 border-gray-800 p-8 max-w-md w-full shadow-2xl">
+            <h3 class="font-display text-4xl text-volt mb-2 tracking-wide uppercase">Atenção</h3>
+            <p class="text-gray-400 mb-8 text-lg">Tem a certeza de que deseja desmarcar todos os itens do seu checklist?</p>
+            <div class="flex gap-4">
+                <button id="modal-cancel-btn" class="flex-1 py-3 bg-transparent border border-gray-600 text-gray-300 font-bold uppercase tracking-wider hover:bg-gray-800 transition-colors text-sm sm:text-base">Cancelar</button>
+                <button id="modal-confirm-btn" class="flex-1 py-3 bg-red-600 text-white font-bold uppercase tracking-wider hover:bg-red-700 transition-colors text-sm sm:text-base">Limpar Tudo</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('.task-checkbox');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const resetBtn = document.getElementById('reset-btn');
+
+            // Load saved state from LocalStorage
+            const savedData = JSON.parse(localStorage.getItem('santosTriChecklist')) || {};
+
+            function updateProgress() {
+                const total = checkboxes.length;
+                const checked = document.querySelectorAll('.task-checkbox:checked').length;
+                const percentage = total === 0 ? 0 : Math.round((checked / total) * 100);
+
+                // Update UI
+                progressBar.style.width = `${percentage}%`;
+                progressText.innerText = `${percentage}%`;
+
+                // If 100%, add a nice glow effect
+                if(percentage === 100) {
+                    progressText.classList.add('animate-pulse');
+                    progressText.style.textShadow = "0 0 20px #ccff00";
+                } else {
+                    progressText.classList.remove('animate-pulse');
+                    progressText.style.textShadow = "none";
+                }
+            }
+
+            // Initialize checkboxes based on saved data
+            checkboxes.forEach(box => {
+                if (savedData[box.dataset.id]) {
+                    box.checked = true;
+                }
+
+                // Listen for changes
+                box.addEventListener('change', (e) => {
+                    // Update LocalStorage
+                    savedData[box.dataset.id] = e.target.checked;
+                    localStorage.setItem('santosTriChecklist', JSON.stringify(savedData));
+                    
+                    updateProgress();
+                });
+            });
+
+            // Elementos do Modal
+            const confirmModal = document.getElementById('confirm-modal');
+            const modalCancelBtn = document.getElementById('modal-cancel-btn');
+            const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+
+            // Abrir Modal
+            resetBtn.addEventListener('click', () => {
+                confirmModal.classList.remove('hidden');
+            });
+
+            // Fechar Modal (Cancelar)
+            modalCancelBtn.addEventListener('click', () => {
+                confirmModal.classList.add('hidden');
+            });
+
+            // Confirmar Ação (Limpar Tudo)
+            modalConfirmBtn.addEventListener('click', () => {
+                checkboxes.forEach(box => box.checked = false);
+                localStorage.removeItem('santosTriChecklist');
+                // Limpar o objeto guardado
+                for (let key in savedData) delete savedData[key];
+                updateProgress();
+                confirmModal.classList.add('hidden');
+            });
+
+            // Initial calculation
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
